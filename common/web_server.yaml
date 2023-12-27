@@ -1,0 +1,3 @@
+# Enable Web Server
+web_server:
+  port: 80

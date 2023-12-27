@@ -1,0 +1,7 @@
+platform: gpio
+pin:
+  number: ${gpio}
+name: ${channel} Schalter
+on_press:
+  then:
+    - switch.toggle: ${switch}

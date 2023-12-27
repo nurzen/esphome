@@ -1,0 +1,4 @@
+platform: esp8266_pwm
+pin: ${gpio}
+id: ${id}
+frequency: 25000 Hz

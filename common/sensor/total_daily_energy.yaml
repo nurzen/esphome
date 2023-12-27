@@ -1,0 +1,8 @@
+platform: total_daily_energy
+name: ${channel} Energie
+power_id: ${power_id}
+accuracy_decimals: 5
+filters:
+  # Multiplication factor from W to kWh is 0.001
+  - multiply: 0.001
+unit_of_measurement: kWh

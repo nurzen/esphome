@@ -1,0 +1,3 @@
+platform: adc
+id: temp_analog_reading
+pin: A0

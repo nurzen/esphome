@@ -1,0 +1,25 @@
+platform: ade7953
+irq_pin: GPIO16 # Prevent overheating by setting this
+voltage:
+  name: ${devicename} Spannung
+  accuracy_decimals: 5
+  # On the Shelly 2.5 channels are mixed ch1=B ch2=A
+current_a:
+  name: ${channel_2} Stromstärke
+  accuracy_decimals: 5
+current_b:
+  name: ${channel_1} Stromstärke
+  accuracy_decimals: 5
+active_power_a:
+  id: power_channel_2
+  name: ${channel_2} Leistung
+  accuracy_decimals: 5
+  # active_power_a is normal, so don't multiply by -1
+active_power_b:
+  id: power_channel_1
+  name: ${channel_1} Leistung
+  accuracy_decimals: 5
+  # active_power_b is inverted, so take the absolute value
+  filters:
+    - lambda: return abs(x);
+update_interval: 60s

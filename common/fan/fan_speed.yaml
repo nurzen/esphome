@@ -1,0 +1,5 @@
+platform: speed
+output: ${output_pin}
+id: ${id}
+name: Fan Speed Control ${id}
+restore_mode: ALWAYS_ON

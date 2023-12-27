@@ -1,0 +1,6 @@
+# Wifi Signal
+platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
+name: ${devicename} WiFi Signal dB
+id: wifi_signal_db
+update_interval: 60s
+entity_category: "diagnostic"

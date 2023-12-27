@@ -1,0 +1,23 @@
+esphome:
+  name: ${devicename}
+  platform: ESP8266
+  board: d1_mini
+
+# Device Specific Config
+i2c:
+  sda: 4
+  scl: 5
+  scan: true
+  id: bus_a
+
+uart:
+  id: uart_bus
+  rx_pin: GPIO3
+  baud_rate: 9600
+  data_bits: 8
+  parity: NONE
+  stop_bits: 1
+
+sml:
+  id: mysml
+  uart_id: uart_bus

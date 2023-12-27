@@ -1,0 +1,43 @@
+substitutions:
+  devicename: s94meter
+  domain: .fritz.box
+
+packages:
+  device_base: !include common/device_d1_mini.yaml
+  logger: !include common/logger.yaml
+  api: !include common/api.yaml
+  ota: !include common/ota.yaml
+  time: !include common/time.yaml
+  wifi: !include common/wifi.yaml
+  web_server: !include common/web_server.yaml
+
+prometheus:
+  include_internal: true
+
+button:
+  - platform: restart
+    name: "s94meter Restart"
+
+text_sensor:
+  - !include common/text_sensor/wifi_info.yaml
+  - !include common/text_sensor/version.yaml
+#  - platform: sml
+#    name: "Device Identification"
+#    sml_id: mysml
+#    obis_code: "1-0:96.1.0"
+#    entity_category: diagnostic
+#    format: text    
+#  - platform: sml
+#    name: "Manufacturer Identification"
+#    sml_id: mysml
+#    obis_code: "1-0:96.50.1"
+#    entity_category: diagnostic
+#    format: text
+
+sensor:
+  - !include common/sensor/uptime.yaml
+  - !include common/sensor/wifi_signal.yaml
+  - !include common/sensor/wifi_signal_percent.yaml
+  - !include { file: common/sensor/sml.yaml, vars: { name: Bezug, obis_code: "1-0:1.8.0"  } } 
+  - !include { file: common/sensor/sml.yaml, vars: { name: Einspeisung, obis_code: "1-0:2.8.0"  } } 
+  - !include common/sensor/sml_leistung.yaml

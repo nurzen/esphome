@@ -1,0 +1,10 @@
+platform: sml
+name: ${name}
+sml_id: mysml
+obis_code: ${obis_code}
+unit_of_measurement: kWh
+accuracy_decimals: 5
+device_class: energy
+state_class: total_increasing
+filters:
+  - multiply: 0.0001

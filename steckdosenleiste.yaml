@@ -1,0 +1,38 @@
+substitutions:
+  devicename: steckdosenleiste
+  domain: .fritz.box
+  channel_1: Relais 1
+  channel_2: Relais 2
+  max_temp: "90.0"
+
+packages:
+  device_base: !include common/device_shelly2.5.yaml
+  logger: !include common/logger.yaml
+  api: !include common/api.yaml
+  ota: !include common/ota.yaml
+  time: !include common/time.yaml
+  wifi: !include common/wifi.yaml
+  web_server: !include common/web_server.yaml
+
+text_sensor:
+  - !include common/text_sensor/wifi_info.yaml
+  - !include common/text_sensor/version.yaml
+
+sensor: 
+  - !include common/sensor/uptime.yaml
+  - !include common/sensor/wifi_signal.yaml
+  - !include common/sensor/wifi_signal_percent.yaml
+  - !include common/sensor/shelly_power_meter.yaml
+  - !include common/sensor/shelly_temperature.yaml
+  - !include common/sensor/shelly_temperature_resistance.yaml
+  - !include common/sensor/shelly_temperature_adc.yaml
+  - !include { file: common/sensor/total_daily_energy.yaml, vars: { channel: Relais 1, power_id: power_channel_1 } } 
+  - !include { file: common/sensor/total_daily_energy.yaml, vars: { channel: Relais 2, power_id: power_channel_2 } } 
+  
+binary_sensor:
+  - !include { file: common/binary_sensor/shelly_switch.yaml, vars: { channel: Relais 1, gpio: GPIO13, switch: shelly_relay_1 } } 
+  - !include { file: common/binary_sensor/shelly_switch.yaml, vars: { channel: Relais 2, gpio: GPIO5, switch: shelly_relay_2 } } 
+  
+switch:
+  - !include { file: common/switch/shelly_relay.yaml, vars: { channel: Relais 1, gpio: GPIO4, id: shelly_relay_1 } } 
+  - !include { file: common/switch/shelly_relay.yaml, vars: { channel: Relais 2, gpio: GPIO15, id: shelly_relay_2 } } 

@@ -1,0 +1,3 @@
+platform: version
+id: text_sensor_version
+name: "${devicename} Version"     

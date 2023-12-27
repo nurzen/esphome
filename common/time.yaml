@@ -1,0 +1,5 @@
+# Enable Time, for Power Consumption
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: Europe/Berlin

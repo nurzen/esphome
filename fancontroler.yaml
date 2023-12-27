@@ -1,0 +1,52 @@
+substitutions:
+  devicename: fancontroler
+  domain: .vdm4
+
+packages:
+  device_base: !include common/device_d1_mini_fancontroler.yaml
+  logger: !include common/logger.yaml
+  api: !include common/api.yaml
+  ota: !include common/ota.yaml
+  time: !include common/time.yaml
+  wifi: !include common/wifi.yaml
+  web_server: !include common/web_server.yaml
+
+preferences:
+  flash_write_interval: 15min
+
+prometheus:
+  include_internal: true
+
+button:
+  - platform: restart
+    name: ${devicename} Restart
+
+text_sensor:
+  - !include common/text_sensor/wifi_info.yaml
+  - !include common/text_sensor/version.yaml
+
+sensor:
+  - !include common/sensor/uptime.yaml
+  - !include common/sensor/wifi_signal.yaml
+  - !include common/sensor/wifi_signal_percent.yaml
+  - !include { file: common/pulse_counter/fan_rpm.yaml, vars: { gpio: D3, id: ONE } } 
+  - !include { file: common/pulse_counter/fan_rpm.yaml, vars: { gpio: D4, id: TWO } } 
+  
+output: 
+  - !include { file: common/output/pwm.yaml, vars: { gpio: D1, id: ONE_PWM } }
+  - !include { file: common/output/pwm.yaml, vars: { gpio: D2, id: TWO_PWM } }
+
+fan:
+  - !include { file: common/fan/fan_speed.yaml, vars: { output_pin: ONE_PWM, id: ONE_CONTROL } }
+  - !include { file: common/fan/fan_speed.yaml, vars: { output_pin: TWO_PWM, id: TWO_CONTROL } }
+#  - platform: speed
+#    output: ONE_PWM
+#    id: fan_speed1
+#    name: "Fan Speed Control1"
+#    restore_mode: ALWAYS_ON
+
+#  - platform: speed
+#    output: TWO_PWM
+#    id: fan_speed2
+#    name: "Fan Speed Control2"
+#    restore_mode: ALWAYS_ON

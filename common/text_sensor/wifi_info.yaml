@@ -1,0 +1,12 @@
+---
+platform: wifi_info
+ip_address:
+  name: ${devicename} IP Address
+ssid:
+  name: ${devicename} Connected SSID
+bssid:
+  name: ${devicename} Connected BSSID
+mac_address:
+  name: ${devicename} Mac Wifi Address
+scan_results:
+  name: ${devicename} Latest Scan Results

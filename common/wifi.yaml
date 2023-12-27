@@ -1,0 +1,13 @@
+wifi:
+  #use_address: s94meter
+  domain: .fritz.box
+  networks:
+    - ssid: !secret wifi_ssid_s94_iot
+      password: !secret wifi_password_s94_iot
+      priority: 10
+    - ssid: !secret wifi_ssid_s94
+      password: !secret wifi_password_s94
+    - ssid: !secret wifi_ssid_vdm4
+      password: !secret wifi_password_vdm4
+
+captive_portal:
